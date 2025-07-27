@@ -52,14 +52,22 @@
             align-items: center;
             justify-content: center;
             margin: 20px 0;
+            overflow: hidden;
+            position: relative;
         }
 
         .carousel {
             position: relative;
-            width: 100%;
+            width: 200px;
             height: 280px;
             transform-style: preserve-3d;
-            transition: transform 1s ease;
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            cursor: grab;
+        }
+
+        .carousel:active {
+            cursor: grabbing;
         }
 
         .card {
@@ -73,6 +81,8 @@
             overflow: hidden;
             cursor: pointer;
             transition: all 0.5s ease;
+            left: 0;
+            top: 0;
         }
 
         .card.active {
@@ -468,7 +478,12 @@
             console.log('📱 Telegram Web App готов');
         }
 
-        // СОЗДАНИЕ КАРУСЕЛИ (адаптация v0 логики)
+        // СОЗДАНИЕ КАРУСЕЛИ с интерактивностью
+        let isDragging = false;
+        let startX = 0;
+        let currentRotation = 0;
+        let autoRotateInterval;
+
         function createCarousel() {
             const carousel = document.getElementById('carousel');
             const angle = 360 / chars.length;
@@ -492,17 +507,96 @@
                 carousel.appendChild(card);
             });
 
-            // Автовращение как в v0
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % chars.length;
-                rotateCarousel();
-            }, 3000);
+            // Интерактивность мышью
+            carousel.addEventListener('mousedown', startDrag);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', endDrag);
+
+            // Интерактивность touch
+            carousel.addEventListener('touchstart', startTouch);
+            carousel.addEventListener('touchmove', dragTouch);
+            carousel.addEventListener('touchend', endDrag);
+
+            // Автовращение
+            startAutoRotate();
+        }
+
+        function startAutoRotate() {
+            autoRotateInterval = setInterval(() => {
+                if (!isDragging) {
+                    currentIndex = (currentIndex + 1) % chars.length;
+                    rotateCarousel();
+                }
+            }, 4000);
+        }
+
+        function stopAutoRotate() {
+            clearInterval(autoRotateInterval);
+        }
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.clientX;
+            stopAutoRotate();
+            e.preventDefault();
+        }
+
+        function startTouch(e) {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            stopAutoRotate();
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            const currentX = e.clientX;
+            const deltaX = currentX - startX;
+            const sensitivity = 2;
+            
+            currentRotation += deltaX / sensitivity;
+            document.getElementById('carousel').style.transform = `rotateY(${currentRotation}deg)`;
+            
+            startX = currentX;
+            e.preventDefault();
+        }
+
+        function dragTouch(e) {
+            if (!isDragging) return;
+            
+            const currentX = e.touches[0].clientX;
+            const deltaX = currentX - startX;
+            const sensitivity = 2;
+            
+            currentRotation += deltaX / sensitivity;
+            document.getElementById('carousel').style.transform = `rotateY(${currentRotation}deg)`;
+            
+            startX = currentX;
+            e.preventDefault();
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            
+            // Привязка к ближайшей карточке
+            const angle = 360 / chars.length;
+            const snappedIndex = Math.round(-currentRotation / angle) % chars.length;
+            currentIndex = snappedIndex < 0 ? snappedIndex + chars.length : snappedIndex;
+            
+            rotateCarousel();
+            
+            // Возобновить автовращение
+            setTimeout(startAutoRotate, 2000);
         }
 
         function rotateCarousel() {
             const carousel = document.getElementById('carousel');
             const angle = 360 / chars.length;
-            carousel.style.transform = `rotateY(${-currentIndex * angle}deg)`;
+            currentRotation = -currentIndex * angle;
+            carousel.style.transform = `rotateY(${currentRotation}deg)`;
             
             document.querySelectorAll('.card').forEach((card, i) => {
                 card.classList.toggle('active', i === currentIndex);
