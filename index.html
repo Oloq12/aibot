@@ -30,14 +30,14 @@
             backdrop-filter: blur(10px);
         }
 
-        .header h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #ff6b9d, #667eea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
+                 .header h1 {
+             font-size: 2rem;
+             font-weight: bold;
+             background: linear-gradient(135deg, #ff1493, #ff69b4, #da70d6);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             margin-bottom: 8px;
+         }
 
         .main {
             flex: 1;
@@ -58,35 +58,43 @@
              max-width: 400px;
          }
 
-        .gallery::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 80px;
-            height: 100%;
-            background: linear-gradient(to right, 
-                rgba(17, 17, 22, 1) 0%, 
-                rgba(17, 17, 22, 0.8) 50%,
-                transparent 100%);
-            z-index: 10;
-            pointer-events: none;
-        }
+                 .gallery::before {
+             content: '';
+             position: absolute;
+             left: 0;
+             top: 0;
+             width: 120px;
+             height: 100%;
+             background: linear-gradient(to right, 
+                 rgba(17, 17, 22, 1) 0%, 
+                 rgba(17, 17, 22, 0.95) 20%,
+                 rgba(17, 17, 22, 0.8) 40%,
+                 rgba(17, 17, 22, 0.4) 70%,
+                 rgba(17, 17, 22, 0.1) 90%,
+                 transparent 100%);
+             z-index: 10;
+             pointer-events: none;
+             border-radius: 0 60px 60px 0;
+         }
 
-        .gallery::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 80px;
-            height: 100%;
-            background: linear-gradient(to left, 
-                rgba(17, 17, 22, 1) 0%, 
-                rgba(17, 17, 22, 0.8) 50%,
-                transparent 100%);
-            z-index: 10;
-            pointer-events: none;
-        }
+         .gallery::after {
+             content: '';
+             position: absolute;
+             right: 0;
+             top: 0;
+             width: 120px;
+             height: 100%;
+             background: linear-gradient(to left, 
+                 rgba(17, 17, 22, 1) 0%, 
+                 rgba(17, 17, 22, 0.95) 20%,
+                 rgba(17, 17, 22, 0.8) 40%,
+                 rgba(17, 17, 22, 0.4) 70%,
+                 rgba(17, 17, 22, 0.1) 90%,
+                 transparent 100%);
+             z-index: 10;
+             pointer-events: none;
+             border-radius: 60px 0 0 60px;
+         }
 
                  .carousel {
              position: relative;
@@ -119,26 +127,26 @@
             filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
         }
 
-        .card.active {
-            transform: scale(1.05);
-            filter: drop-shadow(0 20px 40px rgba(255, 107, 157, 0.4));
-        }
+                 .card.active {
+             transform: scale(1.05);
+             filter: drop-shadow(0 20px 40px rgba(255, 20, 147, 0.6));
+         }
 
-        .card-img {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(255, 107, 157, 0.9) 0%, 
-                rgba(255, 107, 157, 0.7) 25%,
-                rgba(102, 126, 234, 0.7) 75%,
-                rgba(102, 126, 234, 0.9) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border-radius: 24px;
-            position: relative;
-        }
+                 .card-img {
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(135deg, 
+                 rgba(255, 20, 147, 0.95) 0%, 
+                 rgba(255, 105, 180, 0.9) 25%,
+                 rgba(218, 112, 214, 0.9) 75%,
+                 rgba(255, 69, 180, 0.95) 100%);
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: 3rem;
+             border-radius: 24px;
+             position: relative;
+         }
 
         .card-img::before {
             content: '';
@@ -169,48 +177,55 @@
             color: white;
         }
 
-        /* КНОПКА СОЗДАНИЯ */
-        .create-btn {
-            margin: 24px 16px;
-            padding: 16px;
-            background: linear-gradient(135deg, #f093fb, #667eea);
-            border: none;
-            border-radius: 16px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
+                 /* КНОПКА СОЗДАНИЯ */
+         .create-btn {
+             margin: 24px 16px;
+             padding: 16px;
+             background: linear-gradient(135deg, #ff1493, #ff69b4, #da70d6);
+             border: none;
+             border-radius: 16px;
+             color: white;
+             font-size: 1.1rem;
+             font-weight: bold;
+             cursor: pointer;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             gap: 12px;
+             box-shadow: 0 8px 24px rgba(255, 20, 147, 0.3);
+         }
 
         /* КАТАЛОГ из v0 */
         .catalog {
             padding: 0 16px;
         }
 
-        .filters {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
+                 .filters {
+             display: flex;
+             gap: 8px;
+             margin-bottom: 16px;
+             justify-content: center;
+         }
 
-        .filter {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
+         .filter {
+             padding: 8px 16px;
+             border: none;
+             border-radius: 20px;
+             font-size: 0.9rem;
+             cursor: pointer;
+             background: rgba(255, 255, 255, 0.1);
+             color: rgba(255, 255, 255, 0.7);
+             flex: 1;
+             max-width: 90px;
+             text-align: center;
+             transition: all 0.3s ease;
+         }
 
-        .filter.active {
-            background: linear-gradient(135deg, #ff6b9d, #667eea);
-            color: white;
-        }
+                 .filter.active {
+             background: linear-gradient(135deg, #ff1493, #ff69b4);
+             color: white;
+             box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
+         }
 
         .grid {
             display: grid;
@@ -226,16 +241,23 @@
             cursor: pointer;
         }
 
-        .create-card {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(102, 126, 234, 0.1));
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 16px;
-        }
+                 .create-card {
+             background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(255, 105, 180, 0.15));
+             border: 2px dashed rgba(255, 105, 180, 0.4);
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             text-align: center;
+             padding: 16px;
+             transition: all 0.3s ease;
+         }
+
+         .create-card:hover {
+             background: linear-gradient(135deg, rgba(255, 20, 147, 0.25), rgba(255, 105, 180, 0.25));
+             border-color: rgba(255, 105, 180, 0.6);
+             transform: translateY(-2px);
+         }
 
         /* НАВИГАЦИЯ из v0 */
         .nav {
@@ -266,12 +288,13 @@
             min-width: 60px;
         }
 
-        .nav-item.active { color: #ff6b9d; }
+                 .nav-item.active { color: #ff1493; }
 
-        .nav-item.create {
-            background: linear-gradient(135deg, #f093fb, #667eea);
-            color: white !important;
-        }
+         .nav-item.create {
+             background: linear-gradient(135deg, #ff1493, #ff69b4);
+             color: white !important;
+             box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
+         }
 
         .nav-icon {
             font-size: 1.5rem;
@@ -290,17 +313,23 @@
             flex-direction: column;
         }
 
-        /* ТЕГИ ДЛЯ СОЗДАНИЯ */
-        .tag {
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
+                 /* ТЕГИ ДЛЯ СОЗДАНИЯ */
+         .tag {
+             padding: 8px 16px;
+             background: rgba(255, 255, 255, 0.1);
+             border: 1px solid rgba(255, 255, 255, 0.2);
+             border-radius: 20px;
+             color: rgba(255, 255, 255, 0.8);
+             cursor: pointer;
+             transition: all 0.3s ease;
+             font-size: 0.9rem;
+         }
+
+         /* АНИМАЦИЯ ТЕКСТА */
+         #partnerType, #mainPartnerType {
+             transition: opacity 0.3s ease;
+             display: inline-block;
+         }
 
                  .tag.selected {
              background: linear-gradient(135deg, #ff6b9d, #667eea);
@@ -335,26 +364,27 @@
                 <div class="carousel" id="carousel"></div>
             </section>
 
-                         <!-- КНОПКА СОЗДАНИЯ -->
-             <button class="create-btn" onclick="navigateTo('create')">
-                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                     <span>⭐</span>
-                     <div style="text-align: center;">
-                         <div>Создайте своего спутника</div>
-                         <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 2px;">Оригинальная или по образу</div>
-                     </div>
-                 </div>
-             </button>
+                                                   <!-- КНОПКА СОЗДАНИЯ -->
+              <button class="create-btn" onclick="navigateTo('create')">
+                  <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                      <span>⭐</span>
+                      <div style="text-align: center;">
+                          <div>Создайте <span id="mainPartnerType">свою спутницу</span></div>
+                          <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 2px;">Оригинальная или по образу</div>
+                      </div>
+                  </div>
+              </button>
 
-            <!-- КАТАЛОГ (из v0) -->
-            <section class="catalog">
-                <div class="filters">
-                    <button class="filter active" onclick="filterChars('all')">Все модели</button>
-                    <button class="filter" onclick="filterChars('real')">Реальный</button>
-                    <button class="filter" onclick="filterChars('anime')">Аниме</button>
-                </div>
-                <div class="grid" id="grid"></div>
-            </section>
+                         <!-- КАТАЛОГ (из v0) -->
+             <section class="catalog">
+                 <div class="filters">
+                     <button class="filter active" onclick="filterChars('all')">Все модели</button>
+                     <button class="filter" onclick="filterChars('real')">Реальный</button>
+                     <button class="filter" onclick="filterChars('anime')">Аниме</button>
+                     <button class="filter" onclick="filterChars('my')">👤 Мои</button>
+                 </div>
+                 <div class="grid" id="grid"></div>
+             </section>
         </main>
 
         <!-- СТРАНИЦА СОЗДАНИЯ КОМПАНЬОНА -->
@@ -752,59 +782,81 @@
              });
          }
 
-        // СОЗДАНИЕ КАТАЛОГА (адаптация v0)
-        function createCatalog() {
-            const grid = document.getElementById('grid');
-            
-            // Карточка создания
-            const createCard = document.createElement('div');
-            createCard.className = 'catalog-card create-card';
-            createCard.innerHTML = `
-                <div style="font-size: 3rem; color: #ff6b9d;">⭐</div>
-                <h3 style="font-weight: bold; margin-top: 8px;">Создайте своего спутника</h3>
-            `;
-            createCard.onclick = () => navigateTo('create');
-            grid.appendChild(createCard);
+                 // СОЗДАНИЕ КАТАЛОГА (адаптация v0)
+         function createCatalog() {
+             const grid = document.getElementById('grid');
+             
+             // Карточка оригинального создания
+             const createCard = document.createElement('div');
+             createCard.className = 'catalog-card create-card';
+             createCard.innerHTML = `
+                 <div style="font-size: 3rem; color: #ff1493;">⭐</div>
+                 <h3 style="font-weight: bold; margin-top: 8px;">Создать <span id="partnerType">спутника</span></h3>
+             `;
+             createCard.onclick = () => navigateTo('create');
+             grid.appendChild(createCard);
 
-            // Персонажи
-            catalog.forEach(char => {
-                const card = document.createElement('div');
-                card.className = 'catalog-card';
-                card.setAttribute('data-tag', char.tag.toLowerCase());
-                
-                card.innerHTML = `
-                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #ff6b9d, #667eea); display: flex; align-items: center; justify-content: center; font-size: 2rem;">👤</div>
-                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);"></div>
-                    <div style="position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); color: white; font-size: 0.75rem; padding: 4px 8px; border-radius: 12px;">${char.tag}</div>
-                    <div style="position: absolute; bottom: 8px; left: 8px; color: white; font-weight: bold;">${char.name} ${char.age}</div>
-                `;
-                
-                card.onclick = () => selectChar(char);
-                grid.appendChild(card);
-            });
-        }
+             // Карточка создания по образу
+             const referenceCard = document.createElement('div');
+             referenceCard.className = 'catalog-card create-card';
+             referenceCard.innerHTML = `
+                 <div style="font-size: 3rem; color: #ff69b4;">📸</div>
+                 <h3 style="font-weight: bold; margin-top: 8px;">Создать по образу</h3>
+                 <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 4px;">Загрузи фото</p>
+             `;
+             referenceCard.onclick = () => {
+                 navigateTo('create');
+                 setTimeout(() => switchCreateMode('reference'), 100);
+             };
+             grid.appendChild(referenceCard);
 
-        // ФИЛЬТРАЦИЯ (из v0)
-        function filterChars(filter) {
-            document.querySelectorAll('.filter').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+             // Персонажи
+             catalog.forEach(char => {
+                 const card = document.createElement('div');
+                 card.className = 'catalog-card';
+                 card.setAttribute('data-tag', char.tag.toLowerCase());
+                 
+                 card.innerHTML = `
+                     <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #ff1493, #ff69b4, #da70d6); display: flex; align-items: center; justify-content: center; font-size: 2rem;">👤</div>
+                     <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);"></div>
+                     <div style="position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); color: white; font-size: 0.75rem; padding: 4px 8px; border-radius: 12px;">${char.tag}</div>
+                     <div style="position: absolute; bottom: 8px; left: 8px; color: white; font-weight: bold;">${char.name} ${char.age}</div>
+                 `;
+                 
+                 card.onclick = () => selectChar(char);
+                 grid.appendChild(card);
+             });
+         }
 
-            document.querySelectorAll('.catalog-card').forEach(card => {
-                if (card.classList.contains('create-card')) {
-                    card.style.display = 'flex';
-                    return;
-                }
+                 // ФИЛЬТРАЦИЯ (из v0)
+         function filterChars(filter) {
+             document.querySelectorAll('.filter').forEach(btn => btn.classList.remove('active'));
+             event.target.classList.add('active');
 
-                const tag = card.getAttribute('data-tag');
-                if (filter === 'all' || 
-                    (filter === 'real' && tag === 'реальный') || 
-                    (filter === 'anime' && tag === 'аниме')) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+             document.querySelectorAll('.catalog-card').forEach(card => {
+                 if (card.classList.contains('create-card')) {
+                     card.style.display = 'flex';
+                     return;
+                 }
+
+                 const tag = card.getAttribute('data-tag');
+                 if (filter === 'all' || 
+                     (filter === 'real' && tag === 'реальный') || 
+                     (filter === 'anime' && tag === 'аниме') ||
+                     (filter === 'my')) {
+                     card.style.display = 'block';
+                 } else {
+                     card.style.display = 'none';
+                 }
+             });
+
+             // Для фильтра "Мои" показываем только карточки создания
+             if (filter === 'my') {
+                 document.querySelectorAll('.catalog-card:not(.create-card)').forEach(card => {
+                     card.style.display = 'none';
+                 });
+             }
+         }
 
         // НАВИГАЦИЯ МЕЖДУ СТРАНИЦАМИ
         function navigateTo(page) {
@@ -1023,12 +1075,43 @@
             console.log('👤 Выбран:', char.name);
         }
 
-        // ИНИЦИАЛИЗАЦИЯ
-        document.addEventListener('DOMContentLoaded', function() {
-            createCarousel();
-            createCatalog();
-            console.log('🚀 Peach Web App загружен (v0 дизайн конвертирован)');
-        });
+                 // ДИНАМИЧЕСКАЯ СМЕНА ТЕКСТА
+         const partnerTypes = ['спутника', 'девушку', 'коллегу', 'подругу', 'любовницу', 'начальницу', 'госпожу'];
+         const mainPartnerTypes = ['свою спутницу', 'свою девушку', 'свою коллегу', 'свою подругу', 'свою любовницу', 'свою начальницу', 'свою госпожу'];
+         let currentPartnerIndex = 0;
+
+         function animatePartnerType() {
+             const partnerElement = document.getElementById('partnerType');
+             const mainPartnerElement = document.getElementById('mainPartnerType');
+             
+             if (partnerElement) {
+                 partnerElement.style.opacity = '0';
+                 setTimeout(() => {
+                     currentPartnerIndex = (currentPartnerIndex + 1) % partnerTypes.length;
+                     partnerElement.textContent = partnerTypes[currentPartnerIndex];
+                     partnerElement.style.opacity = '1';
+                 }, 300);
+             }
+             
+             if (mainPartnerElement) {
+                 mainPartnerElement.style.opacity = '0';
+                 setTimeout(() => {
+                     mainPartnerElement.textContent = mainPartnerTypes[currentPartnerIndex];
+                     mainPartnerElement.style.opacity = '1';
+                 }, 300);
+             }
+         }
+
+         // ИНИЦИАЛИЗАЦИЯ
+         document.addEventListener('DOMContentLoaded', function() {
+             createCarousel();
+             createCatalog();
+             
+             // Запускаем анимацию смены текста
+             setInterval(animatePartnerType, 3000);
+             
+             console.log('🚀 Peach Web App загружен (v0 дизайн конвертирован)');
+         });
     </script>
 </body>
 </html>
