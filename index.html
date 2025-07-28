@@ -31,12 +31,24 @@
         }
 
                  .header h1 {
-             font-size: 2rem;
+             font-size: 1.875rem;
              font-weight: bold;
-             background: linear-gradient(135deg, #ff1493, #ff69b4, #da70d6);
-             -webkit-background-clip: text;
-             -webkit-text-fill-color: transparent;
+             color: white;
              margin-bottom: 8px;
+         }
+
+         .logo {
+             font-size: 1.5rem;
+             font-weight: bold;
+             color: white;
+             cursor: pointer;
+         }
+
+         .logo .mini {
+             background: linear-gradient(to right, #f093fb, #667eea);
+             -webkit-background-clip: text;
+             background-clip: text;
+             -webkit-text-fill-color: transparent;
          }
 
         .main {
@@ -63,18 +75,22 @@
              position: absolute;
              left: 0;
              top: 0;
-             width: 120px;
+             width: 160px;
              height: 100%;
              background: linear-gradient(to right, 
                  rgba(17, 17, 22, 1) 0%, 
-                 rgba(17, 17, 22, 0.95) 20%,
+                 rgba(17, 17, 22, 0.98) 10%,
+                 rgba(17, 17, 22, 0.92) 25%,
                  rgba(17, 17, 22, 0.8) 40%,
-                 rgba(17, 17, 22, 0.4) 70%,
-                 rgba(17, 17, 22, 0.1) 90%,
+                 rgba(17, 17, 22, 0.6) 55%,
+                 rgba(17, 17, 22, 0.35) 70%,
+                 rgba(17, 17, 22, 0.15) 85%,
+                 rgba(17, 17, 22, 0.05) 95%,
                  transparent 100%);
              z-index: 10;
              pointer-events: none;
-             border-radius: 0 60px 60px 0;
+             border-radius: 0 80px 80px 0;
+             filter: blur(0.5px);
          }
 
          .gallery::after {
@@ -82,18 +98,22 @@
              position: absolute;
              right: 0;
              top: 0;
-             width: 120px;
+             width: 160px;
              height: 100%;
              background: linear-gradient(to left, 
                  rgba(17, 17, 22, 1) 0%, 
-                 rgba(17, 17, 22, 0.95) 20%,
+                 rgba(17, 17, 22, 0.98) 10%,
+                 rgba(17, 17, 22, 0.92) 25%,
                  rgba(17, 17, 22, 0.8) 40%,
-                 rgba(17, 17, 22, 0.4) 70%,
-                 rgba(17, 17, 22, 0.1) 90%,
+                 rgba(17, 17, 22, 0.6) 55%,
+                 rgba(17, 17, 22, 0.35) 70%,
+                 rgba(17, 17, 22, 0.15) 85%,
+                 rgba(17, 17, 22, 0.05) 95%,
                  transparent 100%);
              z-index: 10;
              pointer-events: none;
-             border-radius: 60px 0 0 60px;
+             border-radius: 80px 0 0 80px;
+             filter: blur(0.5px);
          }
 
                  .carousel {
@@ -118,28 +138,29 @@
             width: 200px;
             height: 280px;
             border-radius: 24px;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
             overflow: hidden;
             cursor: pointer;
             transition: all 0.5s ease;
             left: 0;
             top: 0;
-            filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
                  .card.active {
              transform: scale(1.05);
-             filter: drop-shadow(0 20px 40px rgba(255, 20, 147, 0.6));
+             box-shadow: 0 25px 50px rgba(240, 147, 251, 0.3);
+             z-index: 10;
          }
 
                  .card-img {
              width: 100%;
              height: 100%;
              background: linear-gradient(135deg, 
-                 rgba(255, 20, 147, 0.95) 0%, 
-                 rgba(255, 105, 180, 0.9) 25%,
-                 rgba(218, 112, 214, 0.9) 75%,
-                 rgba(255, 69, 180, 0.95) 100%);
+                 rgba(240, 147, 251, 0.9) 0%, 
+                 rgba(102, 126, 234, 0.9) 100%);
              display: flex;
              align-items: center;
              justify-content: center;
@@ -181,7 +202,7 @@
          .create-btn {
              margin: 24px 16px;
              padding: 16px;
-             background: linear-gradient(135deg, #ff1493, #ff69b4, #da70d6);
+             background: linear-gradient(135deg, #f093fb, #667eea);
              border: none;
              border-radius: 16px;
              color: white;
@@ -192,7 +213,7 @@
              align-items: center;
              justify-content: center;
              gap: 12px;
-             box-shadow: 0 8px 24px rgba(255, 20, 147, 0.3);
+             box-shadow: 0 8px 24px rgba(240, 147, 251, 0.3);
          }
 
         /* КАТАЛОГ из v0 */
@@ -222,9 +243,9 @@
          }
 
                  .filter.active {
-             background: linear-gradient(135deg, #ff1493, #ff69b4);
+             background: linear-gradient(135deg, #ec4899, #f97316);
              color: white;
-             box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
+             box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
          }
 
         .grid {
@@ -288,12 +309,12 @@
             min-width: 60px;
         }
 
-                 .nav-item.active { color: #ff1493; }
+                 .nav-item.active { color: #ec4899; }
 
          .nav-item.create {
-             background: linear-gradient(135deg, #ff1493, #ff69b4);
+             background: linear-gradient(135deg, #f093fb, #667eea);
              color: white !important;
-             box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
+             box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
          }
 
         .nav-icon {
@@ -353,9 +374,16 @@
     <div class="app">
         <!-- ХЕДЕР -->
         <header class="header">
-            <h1>Найди свою пару</h1>
-            <p style="color: rgba(255,255,255,0.6);">Начни общаться с AI-компаньонами</p>
+            <div class="logo" onclick="navigateTo('home')">
+                🍑 Peach<span class="mini">Mini</span>
+            </div>
         </header>
+
+        <!-- HOME PAGE HEADER -->
+        <div id="home-header" class="welcome">
+            <h1>Найди свою пару</h1>
+            <p style="color: #9CA3AF;">Начни общаться с AI-компаньонами</p>
+        </div>
 
         <!-- ОСНОВНОЙ КОНТЕНТ - ГЛАВНАЯ СТРАНИЦА -->
         <main class="main" id="home-content">
@@ -366,12 +394,13 @@
 
                                                    <!-- КНОПКА СОЗДАНИЯ -->
               <button class="create-btn" onclick="navigateTo('create')">
-                  <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                      <span>⭐</span>
-                      <div style="text-align: center;">
+                  <div style="display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
+                      <span style="font-size: 2rem; position: absolute; left: 16px; top: 50%; transform: translateY(-50%);">⭐</span>
+                      <div style="text-align: center; flex: 1; padding: 0 60px;">
                           <div>Создайте <span id="mainPartnerType">свою спутницу</span></div>
                           <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 2px;">Оригинальная или по образу</div>
                       </div>
+                      <span style="font-size: 2rem; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);">⭐</span>
                   </div>
               </button>
 
@@ -498,26 +527,42 @@
 
         <!-- СТРАНИЦА ЧАТОВ -->
         <div class="page" id="page-chat" style="display: none;">
-            <div style="padding: 20px 16px; text-align: center; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); display: flex; align-items: center; position: relative;">
-                <button style="position: absolute; left: 16px; background: rgba(255, 255, 255, 0.1); border: none; border-radius: 12px; color: white; padding: 8px 12px; cursor: pointer;" onclick="navigateTo('home')">←</button>
-                <h1 style="flex: 1; font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #ff6b9d, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">💬 Чаты</h1>
+            <div style="padding: 20px 16px; text-align: center; margin-bottom: 20px;">
+                <h1 style="font-size: 1.5rem; font-weight: bold; color: white; margin-bottom: 8px;">💬 Чат</h1>
+                <p style="color: #9CA3AF;">Ваши активные диалоги</p>
             </div>
-            <div style="padding: 20px 16px; padding-bottom: 100px;">
-                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border-radius: 16px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; display: flex; align-items: center; gap: 16px;" onclick="openIndividualChat('Анна')">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff6b9d, #667eea); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">😇</div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: bold; margin-bottom: 4px;">Анна</div>
-                        <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">Привет! Как дела? 😘</div>
+            <div style="padding: 0 16px 100px;">
+                <!-- Chat Item -->
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); padding: 12px; border-radius: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; hover: background: rgba(255, 255, 255, 0.1); transition: all 0.3s ease; margin-bottom: 16px;" onclick="openIndividualChat('Vera Marquette')">
+                    <div style="position: relative; width: 56px; height: 56px; flex-shrink: 0;">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e4?w=56&h=56&fit=crop&crop=face" alt="Vera Marquette" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
-                    <div style="color: rgba(255, 255, 255, 0.4); font-size: 0.8rem;">15:30</div>
+                    <div style="flex-grow: 1; overflow: hidden;">
+                        <h3 style="font-weight: bold; font-size: 1rem; margin-bottom: 4px;">
+                            Vera Marquette <span style="font-weight: 300; color: #9CA3AF;">24</span>
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #9CA3AF; overflow: hidden;">
+                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Ого, это довольно экстравагантное ув...</p>
+                        </div>
+                    </div>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border-radius: 16px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; display: flex; align-items: center; gap: 16px;" onclick="openIndividualChat('Мия')">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff6b9d, #667eea); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">😊</div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: bold; margin-bottom: 4px;">Мия</div>
-                        <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">Спасибо за подарок! 💕</div>
+
+                <!-- Chat Item with Voice -->
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); padding: 12px; border-radius: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; hover: background: rgba(255, 255, 255, 0.1); transition: all 0.3s ease; margin-bottom: 16px;" onclick="openIndividualChat('Elara Nightshade')">
+                    <div style="position: relative; width: 56px; height: 56px; flex-shrink: 0;">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=56&h=56&fit=crop&crop=face" alt="Elara Nightshade" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
-                    <div style="color: rgba(255, 255, 255, 0.4); font-size: 0.8rem;">14:45</div>
+                    <div style="flex-grow: 1; overflow: hidden;">
+                        <h3 style="font-weight: bold; font-size: 1rem; margin-bottom: 4px;">
+                            Elara Nightshade <span style="font-weight: 300; color: #9CA3AF;">23</span>
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #9CA3AF; overflow: hidden;">
+                            <svg style="width: 16px; height: 16px; flex-shrink: 0;" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                            </svg>
+                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Привет, я наблюдала за тобой. Готова ...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -790,8 +835,8 @@
              const createCard = document.createElement('div');
              createCard.className = 'catalog-card create-card';
              createCard.innerHTML = `
-                 <div style="font-size: 3rem; color: #ff1493;">⭐</div>
-                 <h3 style="font-weight: bold; margin-top: 8px;">Создать <span id="partnerType">спутника</span></h3>
+                 <div style="font-size: 3rem; color: #ff1493; height: 60px; display: flex; align-items: center; justify-content: center;">⭐</div>
+                 <h3 style="font-weight: bold; margin-top: 8px; height: 24px; display: flex; align-items: center; justify-content: center;">Создать <span id="partnerType">спутника</span></h3>
              `;
              createCard.onclick = () => navigateTo('create');
              grid.appendChild(createCard);
