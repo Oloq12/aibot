@@ -44,27 +44,62 @@
             padding-bottom: 100px;
         }
 
-        /* 3D КАРУСЕЛЬ из v0 */
-        .gallery {
-            height: 360px;
-            perspective: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            overflow: hidden;
-            position: relative;
+                 /* 3D КАРУСЕЛЬ из v0 */
+         .gallery {
+             height: 360px;
+             perspective: 1000px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             margin: 20px auto;
+             overflow: hidden;
+             position: relative;
+             width: 100%;
+             max-width: 400px;
+         }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to right, 
+                rgba(17, 17, 22, 1) 0%, 
+                rgba(17, 17, 22, 0.8) 50%,
+                transparent 100%);
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .carousel {
-            position: relative;
-            width: 200px;
-            height: 280px;
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease;
-            margin: 0 auto;
-            cursor: grab;
+        .gallery::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to left, 
+                rgba(17, 17, 22, 1) 0%, 
+                rgba(17, 17, 22, 0.8) 50%,
+                transparent 100%);
+            z-index: 10;
+            pointer-events: none;
         }
+
+                 .carousel {
+             position: relative;
+             width: 200px;
+             height: 280px;
+             transform-style: preserve-3d;
+             transition: transform 0.5s ease;
+             margin: 0 auto;
+             cursor: grab;
+             left: 50%;
+             transform-origin: center;
+             margin-left: -100px;
+         }
 
         .carousel:active {
             cursor: grabbing;
@@ -75,35 +110,56 @@
             width: 200px;
             height: 280px;
             border-radius: 24px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.5s ease;
             left: 0;
             top: 0;
+            filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
         }
 
         .card.active {
             transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.3);
+            filter: drop-shadow(0 20px 40px rgba(255, 107, 157, 0.4));
         }
 
         .card-img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #ff6b9d, #667eea);
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 157, 0.9) 0%, 
+                rgba(255, 107, 157, 0.7) 25%,
+                rgba(102, 126, 234, 0.7) 75%,
+                rgba(102, 126, 234, 0.9) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .card-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(255, 255, 255, 0.02) 100%);
+            border-radius: 24px;
         }
 
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.6) 0%, 
+                rgba(0, 0, 0, 0.3) 30%,
+                rgba(0, 0, 0, 0.1) 60%,
+                transparent 100%);
+            border-radius: 24px;
         }
 
         .card-info {
@@ -246,11 +302,22 @@
             font-size: 0.9rem;
         }
 
-        .tag.selected {
-            background: linear-gradient(135deg, #ff6b9d, #667eea);
-            color: white;
-            border-color: transparent;
-        }
+                 .tag.selected {
+             background: linear-gradient(135deg, #ff6b9d, #667eea);
+             color: white;
+             border-color: transparent;
+         }
+
+         /* СТИЛИ ДЛЯ СОЗДАНИЯ */
+         .create-mode-btn.active {
+             background: linear-gradient(135deg, #f093fb, #667eea) !important;
+             border-color: transparent !important;
+         }
+
+         .similarity-btn.active {
+             background: linear-gradient(135deg, #ff6b9d, #667eea) !important;
+             border-color: transparent !important;
+         }
     </style>
 </head>
 <body>
@@ -268,10 +335,16 @@
                 <div class="carousel" id="carousel"></div>
             </section>
 
-            <!-- КНОПКА СОЗДАНИЯ -->
-            <button class="create-btn" onclick="navigateTo('create')">
-                ⭐ Создайте своего спутника
-            </button>
+                         <!-- КНОПКА СОЗДАНИЯ -->
+             <button class="create-btn" onclick="navigateTo('create')">
+                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                     <span>⭐</span>
+                     <div style="text-align: center;">
+                         <div>Создайте своего спутника</div>
+                         <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 2px;">Оригинальная или по образу</div>
+                     </div>
+                 </div>
+             </button>
 
             <!-- КАТАЛОГ (из v0) -->
             <section class="catalog">
@@ -290,12 +363,59 @@
                 <button style="position: absolute; left: 16px; background: rgba(255, 255, 255, 0.1); border: none; border-radius: 12px; color: white; padding: 8px 12px; cursor: pointer;" onclick="navigateTo('home')">←</button>
                 <h1 style="flex: 1; font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #ff6b9d, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⭐ Создать компаньона</h1>
             </div>
-            <div style="padding: 20px 16px; padding-bottom: 100px;">
-                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px 20px; text-align: center; margin-bottom: 30px; cursor: pointer;" onclick="uploadPhoto()">
-                    <div style="font-size: 4rem; color: #ff6b9d; margin-bottom: 16px;">📷</div>
-                    <h3>Загрузить фото девушки</h3>
-                    <p style="color: rgba(255,255,255,0.6);">JPEG/PNG, максимум 10MB</p>
-                </div>
+                         <div style="padding: 20px 16px; padding-bottom: 100px;">
+                 <!-- ВЫБОР СПОСОБА СОЗДАНИЯ -->
+                 <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                     <button id="createOriginalBtn" class="create-mode-btn active" onclick="switchCreateMode('original')" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #f093fb, #667eea); border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer;">🎨 Оригинальная</button>
+                     <button id="createReferenceBtn" class="create-mode-btn" onclick="switchCreateMode('reference')" style="flex: 1; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: white; font-weight: bold; cursor: pointer;">💫 По образу</button>
+                 </div>
+
+                 <!-- ОРИГИНАЛЬНОЕ СОЗДАНИЕ -->
+                 <div id="originalCreation" style="display: block;">
+                     <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px 20px; text-align: center; margin-bottom: 30px; cursor: pointer;" onclick="uploadPhoto()">
+                         <div style="font-size: 4rem; color: #ff6b9d; margin-bottom: 16px;">🎨</div>
+                         <h3>Создать оригинальную</h3>
+                         <p style="color: rgba(255,255,255,0.6);">ИИ сгенерирует уникальную внешность</p>
+                     </div>
+                 </div>
+
+                 <!-- СОЗДАНИЕ ПО РЕФЕРЕНСУ -->
+                 <div id="referenceCreation" style="display: none;">
+                     <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 30px 20px; margin-bottom: 20px;">
+                         <div style="text-align: center; margin-bottom: 20px;">
+                             <div style="font-size: 3rem; color: #ff6b9d; margin-bottom: 12px;">💫</div>
+                             <h3>Воссоздать по образу</h3>
+                             <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Загрузите фото для вдохновения</p>
+                         </div>
+                         
+                         <div style="background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(255, 255, 255, 0.3); border-radius: 16px; padding: 24px; text-align: center; cursor: pointer; margin-bottom: 16px;" onclick="uploadReference()">
+                             <div style="font-size: 2.5rem; margin-bottom: 8px;">📸</div>
+                             <p style="font-size: 0.9rem;">Нажмите для загрузки</p>
+                             <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">JPEG/PNG до 10MB</p>
+                         </div>
+
+                         <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                 <span style="font-size: 1.2rem;">⚖️</span>
+                                 <span style="font-weight: bold; color: #ffc107;">Этические принципы</span>
+                             </div>
+                             <ul style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 0; padding-left: 16px;">
+                                 <li>Используйте только с согласия человека</li>
+                                 <li>Не загружайте фото несовершеннолетних</li>
+                                 <li>Результат будет стилизован и не копирует точно</li>
+                             </ul>
+                         </div>
+
+                         <div style="margin-bottom: 16px;">
+                             <label style="display: block; margin-bottom: 8px; font-weight: bold;">💫 Степень похожести:</label>
+                             <div style="display: flex; gap: 8px;">
+                                 <button class="similarity-btn active" onclick="setSimilarity('inspired')" style="flex: 1; padding: 8px 12px; background: linear-gradient(135deg, #ff6b9d, #667eea); border: none; border-radius: 8px; color: white; font-size: 0.85rem; cursor: pointer;">Вдохновленный</button>
+                                 <button class="similarity-btn" onclick="setSimilarity('similar')" style="flex: 1; padding: 8px 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: white; font-size: 0.85rem; cursor: pointer;">Похожий</button>
+                                 <button class="similarity-btn" onclick="setSimilarity('close')" style="flex: 1; padding: 8px 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: white; font-size: 0.85rem; cursor: pointer;">Максимальный</button>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
                 <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border-radius: 20px; padding: 24px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h3 style="margin-bottom: 15px;">👤 Основные данные</h3>
                     <input type="text" placeholder="Имя компаньона..." style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: white; font-size: 1rem; margin-bottom: 15px;" id="companionNameCreate">
@@ -312,7 +432,7 @@
                         <div class="tag" onclick="toggleCreateTag(this)">Нежная</div>
                     </div>
                 </div>
-                <button style="width: 100%; padding: 16px; background: linear-gradient(135deg, #f093fb, #667eea); border: none; border-radius: 16px; color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer;" onclick="createCustomCompanion()">💎 Создать за 100 звезд</button>
+                                 <button id="createFinalBtn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #f093fb, #667eea); border: none; border-radius: 16px; color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer;" onclick="createCustomCompanion()">💎 Создать за 100 звезд</button>
             </div>
         </div>
 
@@ -534,74 +654,103 @@
             clearInterval(autoRotateInterval);
         }
 
-        function startDrag(e) {
-            isDragging = true;
-            startX = e.clientX;
-            stopAutoRotate();
-            e.preventDefault();
-        }
+                 function startDrag(e) {
+             isDragging = true;
+             startX = e.clientX;
+             stopAutoRotate();
+             
+             // Синхронизируем currentRotation с текущим состоянием
+             const angle = 360 / chars.length;
+             currentRotation = -currentIndex * angle;
+             
+             e.preventDefault();
+         }
 
-        function startTouch(e) {
-            isDragging = true;
-            startX = e.touches[0].clientX;
-            stopAutoRotate();
-            e.preventDefault();
-        }
+         function startTouch(e) {
+             isDragging = true;
+             startX = e.touches[0].clientX;
+             stopAutoRotate();
+             
+             // Синхронизируем currentRotation с текущим состоянием
+             const angle = 360 / chars.length;
+             currentRotation = -currentIndex * angle;
+             
+             e.preventDefault();
+         }
 
-        function drag(e) {
-            if (!isDragging) return;
-            
-            const currentX = e.clientX;
-            const deltaX = currentX - startX;
-            const sensitivity = 2;
-            
-            currentRotation += deltaX / sensitivity;
-            document.getElementById('carousel').style.transform = `rotateY(${currentRotation}deg)`;
-            
-            startX = currentX;
-            e.preventDefault();
-        }
+                 function drag(e) {
+             if (!isDragging) return;
+             
+             const currentX = e.clientX;
+             const deltaX = currentX - startX;
+             const sensitivity = 2;
+             
+             // Ограничиваем скорость вращения
+             const maxDelta = 10;
+             const limitedDelta = Math.max(-maxDelta, Math.min(maxDelta, deltaX / sensitivity));
+             
+             currentRotation += limitedDelta;
+             document.getElementById('carousel').style.transform = `rotateY(${currentRotation}deg)`;
+             
+             startX = currentX;
+             e.preventDefault();
+         }
 
-        function dragTouch(e) {
-            if (!isDragging) return;
-            
-            const currentX = e.touches[0].clientX;
-            const deltaX = currentX - startX;
-            const sensitivity = 2;
-            
-            currentRotation += deltaX / sensitivity;
-            document.getElementById('carousel').style.transform = `rotateY(${currentRotation}deg)`;
-            
-            startX = currentX;
-            e.preventDefault();
-        }
+         function dragTouch(e) {
+             if (!isDragging) return;
+             
+             const currentX = e.touches[0].clientX;
+             const deltaX = currentX - startX;
+             const sensitivity = 2;
+             
+             // Ограничиваем скорость вращения
+             const maxDelta = 10;
+             const limitedDelta = Math.max(-maxDelta, Math.min(maxDelta, deltaX / sensitivity));
+             
+             currentRotation += limitedDelta;
+             document.getElementById('carousel').style.transform = `rotateY(${currentRotation}deg)`;
+             
+             startX = currentX;
+             e.preventDefault();
+         }
 
-        function endDrag() {
-            if (!isDragging) return;
-            
-            isDragging = false;
-            
-            // Привязка к ближайшей карточке
-            const angle = 360 / chars.length;
-            const snappedIndex = Math.round(-currentRotation / angle) % chars.length;
-            currentIndex = snappedIndex < 0 ? snappedIndex + chars.length : snappedIndex;
-            
-            rotateCarousel();
-            
-            // Возобновить автовращение
-            setTimeout(startAutoRotate, 2000);
-        }
+         function endDrag() {
+             if (!isDragging) return;
+             
+             isDragging = false;
+             
+             // Упрощенная логика snap-to-card
+             const angle = 360 / chars.length;
+             
+             // Находим ближайший индекс без сложных вычислений
+             let closestIndex = Math.round(-currentRotation / angle);
+             
+             // Нормализуем индекс в пределах массива
+             closestIndex = ((closestIndex % chars.length) + chars.length) % chars.length;
+             
+             // Устанавливаем новый текущий индекс
+             currentIndex = closestIndex;
+             
+             rotateCarousel();
+             
+             // Возобновить автовращение
+             setTimeout(startAutoRotate, 2000);
+         }
 
-        function rotateCarousel() {
-            const carousel = document.getElementById('carousel');
-            const angle = 360 / chars.length;
-            currentRotation = -currentIndex * angle;
-            carousel.style.transform = `rotateY(${currentRotation}deg)`;
-            
-            document.querySelectorAll('.card').forEach((card, i) => {
-                card.classList.toggle('active', i === currentIndex);
-            });
-        }
+                 function rotateCarousel() {
+             const carousel = document.getElementById('carousel');
+             const angle = 360 / chars.length;
+             
+             // Вычисляем целевой угол и обновляем currentRotation
+             const targetRotation = -currentIndex * angle;
+             currentRotation = targetRotation;
+             
+             carousel.style.transform = `rotateY(${currentRotation}deg)`;
+             
+             document.querySelectorAll('.card').forEach((card, i) => {
+                 card.classList.toggle('active', i === currentIndex);
+             });
+         }
 
         // СОЗДАНИЕ КАТАЛОГА (адаптация v0)
         function createCatalog() {
@@ -686,37 +835,116 @@
             console.log('🔥 Переход на:', page);
         }
 
-        // СОЗДАНИЕ КАСТОМНОГО КОМПАНЬОНА
-        function toggleCreateTag(element) {
-            element.classList.toggle('selected');
-        }
+                 // СОЗДАНИЕ КАСТОМНОГО КОМПАНЬОНА
+         let currentCreateMode = 'original';
+         let currentSimilarity = 'inspired';
+         let uploadedReference = null;
 
-        function uploadPhoto() {
-            alert('📷 Функция загрузки фото будет доступна после интеграции с ботом!');
-        }
+         function switchCreateMode(mode) {
+             currentCreateMode = mode;
+             
+             // Обновить кнопки
+             document.querySelectorAll('.create-mode-btn').forEach(btn => btn.classList.remove('active'));
+             document.getElementById(mode === 'original' ? 'createOriginalBtn' : 'createReferenceBtn').classList.add('active');
+             
+             // Показать/скрыть секции
+             document.getElementById('originalCreation').style.display = mode === 'original' ? 'block' : 'none';
+             document.getElementById('referenceCreation').style.display = mode === 'reference' ? 'block' : 'none';
+             
+             // Обновить кнопку создания
+             const finalBtn = document.getElementById('createFinalBtn');
+             if (mode === 'reference') {
+                 finalBtn.innerHTML = '💫 Создать по образу за 150 звезд';
+             } else {
+                 finalBtn.innerHTML = '💎 Создать за 100 звезд';
+             }
+             
+             console.log('🔄 Режим создания:', mode);
+         }
 
-        function createCustomCompanion() {
-            const name = document.getElementById('companionNameCreate').value || 'Анна';
-            const age = document.getElementById('companionAgeCreate').value || '25';
-            const personality = Array.from(document.querySelectorAll('#page-create .tag.selected')).map(tag => tag.textContent);
-            
-            const companionData = {
-                name: name,
-                age: age,
-                personality: personality
-            };
-            
-            if (window.Telegram?.WebApp) {
-                window.Telegram.WebApp.sendData(JSON.stringify({
-                    action: 'create_custom_companion',
-                    data: companionData
-                }));
-            }
-            
-            alert(`🎉 Компаньон "${name}" создан! Возраст: ${age}, характер: ${personality.join(', ') || 'Загадочная'}`);
-            navigateTo('companions');
-            console.log('🎨 Создан компаньон:', companionData);
-        }
+         function setSimilarity(level) {
+             currentSimilarity = level;
+             
+             // Обновить кнопки
+             document.querySelectorAll('.similarity-btn').forEach(btn => btn.classList.remove('active'));
+             event.target.classList.add('active');
+             
+             console.log('💫 Степень похожести:', level);
+         }
+
+         function uploadReference() {
+             // Имитация загрузки файла
+             const input = document.createElement('input');
+             input.type = 'file';
+             input.accept = 'image/jpeg,image/png';
+             input.onchange = function(e) {
+                 const file = e.target.files[0];
+                 if (file) {
+                     uploadedReference = file;
+                     // Обновить UI
+                     const uploadArea = event.target;
+                     uploadArea.innerHTML = `
+                         <div style="font-size: 2.5rem; margin-bottom: 8px;">✅</div>
+                         <p style="font-size: 0.9rem; color: #4CAF50;">Референс загружен</p>
+                         <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">${file.name}</p>
+                     `;
+                     uploadArea.style.borderColor = 'rgba(76, 175, 80, 0.5)';
+                     uploadArea.style.background = 'rgba(76, 175, 80, 0.1)';
+                     
+                     console.log('📸 Референс загружен:', file.name);
+                 }
+             };
+             input.click();
+         }
+
+         function toggleCreateTag(element) {
+             element.classList.toggle('selected');
+         }
+
+         function uploadPhoto() {
+             alert('🎨 Функция загрузки фото будет доступна после интеграции с ботом!');
+         }
+
+                 function createCustomCompanion() {
+             const name = document.getElementById('companionNameCreate').value || 'Анна';
+             const age = document.getElementById('companionAgeCreate').value || '25';
+             const personality = Array.from(document.querySelectorAll('#page-create .tag.selected')).map(tag => tag.textContent);
+             
+             const companionData = {
+                 name: name,
+                 age: age,
+                 personality: personality,
+                 creationMode: currentCreateMode,
+                 similarity: currentSimilarity,
+                 hasReference: uploadedReference !== null
+             };
+             
+             // Проверки для режима по референсу
+             if (currentCreateMode === 'reference' && !uploadedReference) {
+                 alert('📸 Пожалуйста, загрузите референсное фото для создания по образу!');
+                 return;
+             }
+             
+             if (window.Telegram?.WebApp) {
+                 window.Telegram.WebApp.sendData(JSON.stringify({
+                     action: 'create_custom_companion',
+                     data: companionData
+                 }));
+             }
+             
+             const modeText = currentCreateMode === 'reference' ? 'по образу' : 'оригинальная';
+             const priceText = currentCreateMode === 'reference' ? '150 звезд' : '100 звезд';
+             
+             alert(`🎉 Компаньон "${name}" создан (${modeText})!\nВозраст: ${age}\nХарактер: ${personality.join(', ') || 'Загадочная'}\nСтоимость: ${priceText}`);
+             
+             // Сброс формы
+             uploadedReference = null;
+             currentCreateMode = 'original';
+             currentSimilarity = 'inspired';
+             
+             navigateTo('companions');
+             console.log('🎨 Создан компаньон:', companionData);
+         }
 
         // ИНДИВИДУАЛЬНЫЙ ЧАТ
         function openIndividualChat(name) {
