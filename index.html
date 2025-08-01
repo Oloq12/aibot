@@ -526,19 +526,21 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* PROMO BANNER */
+        /* PROMO BANNER - Premium Quality */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
         .promo-banner {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
         }
 
         .promo-banner::before {
@@ -547,59 +549,92 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #ff6b9d, #c44569, #ff6b9d);
+            height: 3px;
+            background: linear-gradient(90deg, #FBBF24, #F59E0B, #FBBF24);
             animation: shimmer 2s infinite;
+        }
+
+        .promo-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+            animation: shimmer 3s infinite;
         }
 
         .promo-content {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             flex: 1;
+            z-index: 2;
+            position: relative;
         }
 
         .promo-text {
-            font-size: 12px;
-            opacity: 0.9;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.95;
         }
 
         .promo-diamond {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             animation: sparkle 2s infinite;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
         }
 
         .promo-discount {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .promo-timer {
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
+            font-family: 'Inter', monospace;
+            font-size: 13px;
+            font-weight: 700;
             margin-left: auto;
-            margin-right: 12px;
-            padding: 2px 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            margin-right: 16px;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 1px;
+            z-index: 2;
+            position: relative;
         }
 
         .promo-button {
-            background: #ff6b9d;
-            color: white;
+            background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+            color: #1F2937;
             border: none;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+            z-index: 2;
+            position: relative;
         }
 
         .promo-button:hover {
-            background: #e055a5;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #FBBF24 0%, #FCD34D 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.6);
         }
 
         @keyframes shimmer {
@@ -608,7 +643,7 @@
         }
 
         /* DESKTOP ADAPTATION */
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .promo-banner {
                 padding: 12px 24px;
                 font-size: 16px;
@@ -713,7 +748,7 @@
             }
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1400px) {
             .desktop-grid {
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                 gap: 32px;
@@ -770,16 +805,16 @@
     <!-- PROMO BANNER -->
     <div class="promo-banner" onclick="openPremium()">
         <div class="promo-content">
-            <span class="promo-text">ПЕРВАЯ ПОДПИСКА</span>
+            <span class="promo-text" data-i18n="promo.first_subscription">ПЕРВАЯ ПОДПИСКА</span>
             <svg class="promo-diamond" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6 2l3 7H4l8 11 8-11h-5l3-7H6z"/>
             </svg>
-            <span class="promo-discount">СКИДКА ДО 70%</span>
+            <span class="promo-discount" data-i18n="promo.discount">СКИДКА ДО 70%</span>
             <div class="promo-timer">
                 <span id="timer-minutes">27</span>:<span id="timer-seconds">49</span>:<span id="timer-milliseconds">00</span>
             </div>
         </div>
-        <button class="promo-button" onclick="event.stopPropagation(); openPremium();">Получить</button>
+        <button class="promo-button" onclick="event.stopPropagation(); openPremium();" data-i18n="promo.get_now">Получить</button>
     </div>
 
     <!-- HEADER -->
@@ -821,8 +856,8 @@
         <!-- HOME PAGE -->
         <div id="page-home" class="page active">
             <div class="welcome">
-                <h1>Найди свою пару</h1>
-                <p>Начни общаться с AI-компаньонами</p>
+                <h1 data-i18n="home.title">Найди свою пару</h1>
+                <p data-i18n="home.subtitle">Начни общаться с AI-компаньонами</p>
             </div>
 
             <!-- CHARACTER GALLERY -->
@@ -850,10 +885,10 @@
             <!-- CHARACTER CATALOG -->
             <div class="catalog">
                                  <div class="filters">
-                     <button class="filter-button active" onclick="filterCatalog('Все модели')">Все модели</button>
-                     <button class="filter-button" onclick="filterCatalog('Реальный')">Реальный</button>
-                     <button class="filter-button" onclick="filterCatalog('Аниме')">Аниме</button>
-                     <button class="filter-button" onclick="filterCatalog('Мои')">Мои</button>
+                                             <button class="filter-button active" onclick="filterCatalog('Все модели')" data-i18n="filters.all">Все модели</button>
+                        <button class="filter-button" onclick="filterCatalog('Реальный')" data-i18n="filters.realistic">Реальный</button>
+                        <button class="filter-button" onclick="filterCatalog('Аниме')" data-i18n="filters.anime">Аниме</button>
+                        <button class="filter-button" onclick="filterCatalog('Мои')" data-i18n="filters.my">Мои</button>
                  </div>
                 <div class="catalog-grid" id="catalog-grid">
                     <!-- Catalog will be populated via JS -->
@@ -900,7 +935,7 @@
             <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
             </svg>
-            <span class="nav-text">Домой</span>
+            <span class="nav-text" data-i18n="nav.home">Домой</span>
             <div class="nav-dot"></div>
         </a>
         
@@ -908,14 +943,14 @@
             <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
             </svg>
-            <span class="nav-text">Чат</span>
+            <span class="nav-text" data-i18n="nav.chat">Чат</span>
         </a>
         
         <a class="nav-item create" onclick="navigateTo('create')">
             <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
                 <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
             </svg>
-            <span class="nav-text">Создать</span>
+            <span class="nav-text" data-i18n="nav.create">Создать</span>
         </a>
         
         <a class="nav-item" onclick="navigateTo('generate')">
@@ -928,7 +963,7 @@
                     <circle cx="15" cy="15" r="0.8" opacity="0.7"/>
                 </g>
             </svg>
-            <span class="nav-text">Сгенерировать</span>
+            <span class="nav-text" data-i18n="nav.generate">Сгенерировать</span>
         </a>
         
         <a class="nav-item" onclick="navigateTo('companions')">
@@ -936,7 +971,7 @@
                 <path d="M20 6h-2V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 4h8v2H8V4zM20 20H4V8h16v12z"/>
                 <path d="M6 10h12v2H6zM6 14h12v2H6zM6 18h8v2H6z"/>
             </svg>
-            <span class="nav-text">Коллекция</span>
+            <span class="nav-text" data-i18n="nav.collection">Коллекция</span>
         </a>
     </nav>
 
@@ -1443,6 +1478,158 @@
         // Обновляем таймер каждые 100мс для плавности
         setInterval(updatePromoTimer, 100);
         updatePromoTimer(); // Начальный вызов
+
+        // ЛОКАЛИЗАЦИЯ СИСТЕМЫ
+        const translations = {
+            ru: {
+                'promo.first_subscription': 'ПЕРВАЯ ПОДПИСКА',
+                'promo.discount': 'СКИДКА ДО 70%',
+                'promo.get_now': 'Получить',
+                'home.title': 'Найди свою пару',
+                'home.subtitle': 'Начни общаться с AI-компаньонами',
+                'nav.home': 'Домой',
+                'nav.chat': 'Чат',
+                'nav.create': 'Создать',
+                'nav.generate': 'Сгенерировать',
+                'nav.collection': 'Коллекция',
+                'filters.all': 'Все модели',
+                'filters.realistic': 'Реальный',
+                'filters.anime': 'Аниме',
+                'filters.my': 'Мои'
+            },
+            en: {
+                'promo.first_subscription': 'FIRST SUBSCRIPTION',
+                'promo.discount': 'UP TO 70% OFF',
+                'promo.get_now': 'Get Now',
+                'home.title': 'Find Your Match',
+                'home.subtitle': 'Start chatting with AI companions',
+                'nav.home': 'Home',
+                'nav.chat': 'Chat',
+                'nav.create': 'Create',
+                'nav.generate': 'Generate',
+                'nav.collection': 'Collection',
+                'filters.all': 'All Models',
+                'filters.realistic': 'Realistic',
+                'filters.anime': 'Anime',
+                'filters.my': 'My'
+            },
+            es: {
+                'promo.first_subscription': 'PRIMERA SUSCRIPCIÓN',
+                'promo.discount': 'HASTA 70% DE DESCUENTO',
+                'promo.get_now': 'Obtener',
+                'home.title': 'Encuentra Tu Pareja',
+                'home.subtitle': 'Comienza a chatear con compañeros AI',
+                'nav.home': 'Inicio',
+                'nav.chat': 'Chat',
+                'nav.create': 'Crear',
+                'nav.generate': 'Generar',
+                'nav.collection': 'Colección',
+                'filters.all': 'Todos',
+                'filters.realistic': 'Realista',
+                'filters.anime': 'Anime',
+                'filters.my': 'Mis'
+            },
+            fr: {
+                'promo.first_subscription': 'PREMIER ABONNEMENT',
+                'promo.discount': 'JUSQU\'À 70% DE RÉDUCTION',
+                'promo.get_now': 'Obtenir',
+                'home.title': 'Trouvez Votre Partenaire',
+                'home.subtitle': 'Commencez à discuter avec des compagnons IA',
+                'nav.home': 'Accueil',
+                'nav.chat': 'Chat',
+                'nav.create': 'Créer',
+                'nav.generate': 'Générer',
+                'nav.collection': 'Collection',
+                'filters.all': 'Tous',
+                'filters.realistic': 'Réaliste',
+                'filters.anime': 'Animé',
+                'filters.my': 'Mes'
+            },
+            de: {
+                'promo.first_subscription': 'ERSTES ABONNEMENT',
+                'promo.discount': 'BIS ZU 70% RABATT',
+                'promo.get_now': 'Jetzt holen',
+                'home.title': 'Finde Deinen Partner',
+                'home.subtitle': 'Beginne mit KI-Begleitern zu chatten',
+                'nav.home': 'Startseite',
+                'nav.chat': 'Chat',
+                'nav.create': 'Erstellen',
+                'nav.generate': 'Generieren',
+                'nav.collection': 'Sammlung',
+                'filters.all': 'Alle',
+                'filters.realistic': 'Realistisch',
+                'filters.anime': 'Anime',
+                'filters.my': 'Meine'
+            }
+        };
+
+        let currentLanguage = 'ru';
+
+        // Функция для определения языка пользователя
+        function detectUserLanguage() {
+            // Сначала проверяем Telegram WebApp язык
+            if (window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code) {
+                const telegramLang = window.Telegram.WebApp.initDataUnsafe.user.language_code;
+                if (translations[telegramLang]) {
+                    return telegramLang;
+                }
+            }
+            
+            // Затем проверяем браузер
+            const browserLang = navigator.language.split('-')[0];
+            if (translations[browserLang]) {
+                return browserLang;
+            }
+            
+            // По умолчанию русский
+            return 'ru';
+        }
+
+        // Функция для смены языка
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLanguage = lang;
+            updateTexts();
+            
+            // Сохраняем выбор языка
+            localStorage.setItem('preferred_language', lang);
+            
+            // Уведомляем Telegram WebApp
+            if (window.Telegram?.WebApp) {
+                const data = {
+                    action: 'language_changed',
+                    language: lang
+                };
+                window.Telegram.WebApp.sendData(JSON.stringify(data));
+            }
+        }
+
+        // Функция для обновления всех текстов
+        function updateTexts() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // Инициализация языка
+        function initializeLanguage() {
+            // Проверяем сохраненный язык
+            const savedLang = localStorage.getItem('preferred_language');
+            if (savedLang && translations[savedLang]) {
+                currentLanguage = savedLang;
+            } else {
+                currentLanguage = detectUserLanguage();
+            }
+            
+            updateTexts();
+        }
+
+        // Запускаем инициализацию языка
+        initializeLanguage();
     </script>
 </body>
 </html>
