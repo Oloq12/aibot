@@ -870,6 +870,10 @@
              
              const angle = 360 / characters.length;
              currentRotation = -activeIndex * angle;
+             
+             // Убираем transition для плавного drag
+             const carousel = document.getElementById('carousel');
+             carousel.style.transition = 'none';
          }
 
          function startTouch(e) {
@@ -880,34 +884,46 @@
              
              const angle = 360 / characters.length;
              currentRotation = -activeIndex * angle;
+             
+             // Убираем transition для плавного drag
+             const carousel = document.getElementById('carousel');
+             carousel.style.transition = 'none';
          }
 
          function drag(e) {
              if (!isDragging) return;
+             e.preventDefault();
              
-             const deltaX = (e.clientX - startX) * 0.5;
-             const maxDelta = 10;
-             const limitedDelta = Math.max(-maxDelta, Math.min(maxDelta, deltaX));
+             const deltaX = (e.clientX - startX) * 0.3;
              
              const carousel = document.getElementById('carousel');
-             carousel.style.transform = `rotateY(${currentRotation + limitedDelta}deg)`;
+             carousel.style.transform = `rotateY(${currentRotation + deltaX}deg)`;
          }
 
          function dragTouch(e) {
              if (!isDragging) return;
              e.preventDefault();
              
-             const deltaX = (e.touches[0].clientX - startX) * 0.5;
-             const maxDelta = 10;
-             const limitedDelta = Math.max(-maxDelta, Math.min(maxDelta, deltaX));
+             const deltaX = (e.touches[0].clientX - startX) * 0.3;
              
              const carousel = document.getElementById('carousel');
-             carousel.style.transform = `rotateY(${currentRotation + limitedDelta}deg)`;
+             carousel.style.transform = `rotateY(${currentRotation + deltaX}deg)`;
          }
 
          function endDrag() {
              if (!isDragging) return;
              isDragging = false;
+             
+             // Возвращаем transition
+             const carousel = document.getElementById('carousel');
+             carousel.style.transition = 'transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)';
+             
+             // Получаем текущий поворот из DOM
+             const transform = carousel.style.transform;
+             const match = transform.match(/rotateY\(([^)]+)deg\)/);
+             if (match) {
+                 currentRotation = parseFloat(match[1]);
+             }
              
              // Snap to nearest card
              const angle = 360 / characters.length;
@@ -956,6 +972,15 @@
              }
          }
 
+         function uploadPhoto() {
+             if (window.Telegram?.WebApp) {
+                 const data = {
+                     action: 'upload_photo_for_similar'
+                 };
+                 window.Telegram.WebApp.sendData(JSON.stringify(data));
+             }
+         }
+
         // CREATE CATALOG - точно как в v0
         function createCatalog() {
             const grid = document.getElementById('catalog-grid');
@@ -975,6 +1000,23 @@
             `;
             createCard.onclick = () => navigateTo('create');
             grid.appendChild(createCard);
+
+            // Photo-based creation card
+            const photoCard = document.createElement('div');
+            photoCard.className = 'catalog-card photo-creation-card';
+            photoCard.innerHTML = `
+                <div style="position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(147, 51, 234, 0.2)); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; text-align: center;">
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e4?w=40&h=40&fit=crop&crop=face" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <div style="position: absolute; top: 8px; right: 8px; background: rgba(236, 72, 153, 0.8); color: white; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem;">✨</div>
+                    <h3 style="font-size: 0.8rem; font-weight: bold; color: white; margin-bottom: 8px; line-height: 1.2;">Найдите похожего компаньона по фотографии</h3>
+                    <button style="background: rgba(236, 72, 153, 0.8); color: white; border: none; padding: 6px 12px; border-radius: 12px; font-size: 0.75rem; cursor: pointer;" onclick="event.stopPropagation(); uploadPhoto();">Загрузить фото</button>
+                </div>
+            `;
+            photoCard.onclick = () => uploadPhoto();
+            grid.appendChild(photoCard);
             
                          // Add character cards
              let filteredCharacters;
