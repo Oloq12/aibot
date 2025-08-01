@@ -49,12 +49,91 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* MAIN CONTENT */
-        .main {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-bottom: 80px;
-        }
+                 /* TOP PANEL */
+         .top-panel {
+             position: fixed;
+             top: 80px;
+             left: 50%;
+             transform: translateX(-50%);
+             width: calc(100% - 32px);
+             max-width: 388px;
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             padding: 8px 16px;
+             background: rgba(0, 0, 0, 0.8);
+             backdrop-filter: blur(20px);
+             border-radius: 20px;
+             z-index: 100;
+         }
+
+         .gender-selector {
+             display: flex;
+             align-items: center;
+             background: rgba(255, 255, 255, 0.1);
+             border-radius: 12px;
+             padding: 4px;
+         }
+
+         .gender-option {
+             padding: 6px 12px;
+             border-radius: 8px;
+             border: none;
+             background: transparent;
+             color: white;
+             cursor: pointer;
+             font-size: 0.875rem;
+             transition: all 0.3s ease;
+         }
+
+         .gender-option.active {
+             background: rgba(255, 255, 255, 0.2);
+         }
+
+         .points-display {
+             display: flex;
+             align-items: center;
+             background: rgba(255, 255, 255, 0.1);
+             border-radius: 12px;
+             padding: 6px 12px;
+             gap: 6px;
+         }
+
+         .panel-icons {
+             display: flex;
+             align-items: center;
+             gap: 12px;
+         }
+
+         .panel-icon {
+             width: 32px;
+             height: 32px;
+             background: rgba(255, 255, 255, 0.1);
+             border-radius: 50%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             border: none;
+             color: white;
+         }
+
+         .panel-icon:hover {
+             background: rgba(255, 255, 255, 0.2);
+         }
+
+         .panel-icon.premium {
+             background: linear-gradient(135deg, #f093fb, #667eea);
+         }
+
+         /* MAIN CONTENT */
+         .main {
+             flex-grow: 1;
+             overflow-y: auto;
+             padding-bottom: 80px;
+             padding-top: 80px;
+         }
 
         .page {
             display: none;
@@ -102,10 +181,12 @@
 
          .carousel {
              position: absolute;
-             width: 100%;
+             width: 200px;
              height: 100%;
              transition: transform 1000ms cubic-bezier(0.4, 0, 0.2, 1);
              transform-style: preserve-3d;
+             left: 50%;
+             margin-left: -100px;
              cursor: grab;
              user-select: none;
              -webkit-user-select: none;
@@ -211,11 +292,7 @@
              height: 24px;
          }
 
-         /* DYNAMIC TEXT ANIMATION */
-         #dynamicText {
-             transition: opacity 0.3s ease;
-             display: inline-block;
-         }
+
 
         /* CHARACTER CATALOG - точно как в v0 */
         .catalog {
@@ -462,6 +539,33 @@
         </div>
     </header>
 
+    <!-- TOP PANEL -->
+    <div class="top-panel">
+        <div class="gender-selector">
+            <button class="gender-option active" onclick="selectGender('female')">♀</button>
+            <button class="gender-option" onclick="selectGender('male')">♂</button>
+        </div>
+        
+        <div class="points-display">
+            <span style="color: #f472b6;">♥</span>
+            <span>16</span>
+            <button style="background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;">+</button>
+        </div>
+        
+        <div class="panel-icons">
+            <button class="panel-icon" onclick="openProfile()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </button>
+            <button class="panel-icon premium" onclick="openPremium()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M5 16c0 3.87 3.13 7 7 7s7-3.13 7-7v-4H5v4zM16.12 4.37l2.1-2.1-.82-.83-2.3 2.31C14.16 3.28 13.12 3 12 3s-2.16.28-3.09.75L6.6 1.44l-.82.83 2.1 2.1C6.14 5.64 5 7.68 5 10v1h14v-1c0-2.32-1.14-4.36-2.88-5.63z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
     <!-- MAIN CONTENT -->
     <main class="main">
         <!-- HOME PAGE -->
@@ -485,16 +589,17 @@
                  <svg class="fish-icon" viewBox="0 0 24 24" fill="currentColor">
                      <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1L13.5 2.5L16.17 5.17C15.24 5.06 14.32 5 13.4 5C10.94 5 8.5 5.64 6.35 6.85L8.1 8.6C9.5 8.06 11 7.79 12.5 7.79C15.5 7.79 18.39 8.94 20.66 11.21L21 9Z"/>
                  </svg>
-                 Создайте <span id="dynamicText">своего спутника</span>
+                 Создайте своего спутника
              </button>
 
             <!-- CHARACTER CATALOG -->
             <div class="catalog">
-                <div class="filters">
-                    <button class="filter-button active" onclick="filterCatalog('Все модели')">Все модели</button>
-                    <button class="filter-button" onclick="filterCatalog('Реальный')">Реальный</button>
-                    <button class="filter-button" onclick="filterCatalog('Аниме')">Аниме</button>
-                </div>
+                                 <div class="filters">
+                     <button class="filter-button active" onclick="filterCatalog('Все модели')">Все модели</button>
+                     <button class="filter-button" onclick="filterCatalog('Реальный')">Реальный</button>
+                     <button class="filter-button" onclick="filterCatalog('Аниме')">Аниме</button>
+                     <button class="filter-button" onclick="filterCatalog('Мои')">Мои</button>
+                 </div>
                 <div class="catalog-grid" id="catalog-grid">
                     <!-- Catalog will be populated via JS -->
                 </div>
@@ -648,27 +753,14 @@
          // CURRENT FILTER
          let currentFilter = "Все модели";
 
-         // DYNAMIC TEXT VARIABLES
-         const textVariants = [
-             'своего спутника',
-             'свою девушку', 
-             'своего друга',
-             'свою подругу',
-             'своего коллегу',
-             'свою коллегу',
-             'своего парня',
-             'свою спутницу',
-             'своего компаньона',
-             'свою компаньонку'
-         ];
-         let currentTextIndex = 0;
+         // CURRENT GENDER
+         let currentGender = 'female';
 
                  // INIT
          document.addEventListener('DOMContentLoaded', function() {
              createGallery();
              createCatalog();
              startAutoRotate();
-             startDynamicText();
              
              if (window.Telegram?.WebApp) {
                  window.Telegram.WebApp.ready();
@@ -716,6 +808,9 @@
               document.addEventListener('touchmove', dragTouch);
               document.addEventListener('mouseup', endDrag);
               document.addEventListener('touchend', endDrag);
+
+              // Устанавливаем начальное состояние
+              rotateCarousel();
           }
 
                  // AUTO ROTATE
@@ -823,22 +918,42 @@
              startAutoRotate();
          }
 
-         // DYNAMIC TEXT
-         function startDynamicText() {
-             setInterval(() => {
-                 currentTextIndex = (currentTextIndex + 1) % textVariants.length;
-                 updateDynamicText();
-             }, 3000);
+         // TOP PANEL FUNCTIONS
+         function selectGender(gender) {
+             currentGender = gender;
+             
+             // Update button states
+             document.querySelectorAll('.gender-option').forEach(btn => {
+                 btn.classList.remove('active');
+             });
+             event.target.classList.add('active');
+             
+             // Filter characters by gender - можно добавить логику фильтрации
+             if (window.Telegram?.WebApp) {
+                 const data = {
+                     action: 'select_gender',
+                     gender: gender
+                 };
+                 window.Telegram.WebApp.sendData(JSON.stringify(data));
+             }
          }
 
-         function updateDynamicText() {
-             const textElement = document.getElementById('dynamicText');
-             textElement.style.opacity = '0';
-             
-             setTimeout(() => {
-                 textElement.textContent = textVariants[currentTextIndex];
-                 textElement.style.opacity = '1';
-             }, 150);
+         function openProfile() {
+             if (window.Telegram?.WebApp) {
+                 const data = {
+                     action: 'open_profile'
+                 };
+                 window.Telegram.WebApp.sendData(JSON.stringify(data));
+             }
+         }
+
+         function openPremium() {
+             if (window.Telegram?.WebApp) {
+                 const data = {
+                     action: 'open_premium'
+                 };
+                 window.Telegram.WebApp.sendData(JSON.stringify(data));
+             }
          }
 
         // CREATE CATALOG - точно как в v0
@@ -861,10 +976,15 @@
             createCard.onclick = () => navigateTo('create');
             grid.appendChild(createCard);
             
-            // Add character cards
-            const filteredCharacters = currentFilter === "Все модели" 
-                ? catalogCharacters 
-                : catalogCharacters.filter(c => c.tag === currentFilter);
+                         // Add character cards
+             let filteredCharacters;
+             if (currentFilter === "Все модели") {
+                 filteredCharacters = catalogCharacters;
+             } else if (currentFilter === "Мои") {
+                 filteredCharacters = []; // Пустой массив для "Мои" - будут показаны только созданные пользователем
+             } else {
+                 filteredCharacters = catalogCharacters.filter(c => c.tag === currentFilter);
+             }
             
             filteredCharacters.forEach(char => {
                 const card = document.createElement('div');
@@ -912,21 +1032,21 @@
             }
         }
 
-        // FILTER CATALOG - точно как в v0
-        function filterCatalog(filter) {
-            currentFilter = filter;
-            
-            // Update active filter button
-            document.querySelectorAll('.filter-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Recreate catalog
-            const grid = document.getElementById('catalog-grid');
-            grid.innerHTML = '';
-            createCatalog();
-        }
+                 // FILTER CATALOG
+         function filterCatalog(filter) {
+             currentFilter = filter;
+             
+             // Update active filter button
+             document.querySelectorAll('.filter-button').forEach(btn => {
+                 btn.classList.remove('active');
+             });
+             event.target.classList.add('active');
+             
+             // Recreate catalog
+             const grid = document.getElementById('catalog-grid');
+             grid.innerHTML = '';
+             createCatalog();
+         }
 
         // NAVIGATION
         function navigateTo(page) {
