@@ -176,6 +176,18 @@
              display: none; /* Скрыть на мобильных по умолчанию */
          }
 
+         .desktop-sidebar {
+             display: none; /* Скрыть на мобильных по умолчанию */
+         }
+
+         .hero-banner {
+             display: none; /* Скрыть на мобильных по умолчанию */
+         }
+
+         .mobile-welcome {
+             display: block; /* Показать на мобильных */
+         }
+
          .gallery-container {
              position: relative;
              width: 100%;
@@ -532,7 +544,7 @@
         .promo-banner {
             background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -541,6 +553,8 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+            min-height: 44px;
+            flex-wrap: nowrap;
         }
 
         .promo-banner::before {
@@ -575,60 +589,66 @@
         }
 
         .promo-text {
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             opacity: 0.95;
+            white-space: nowrap;
         }
 
         .promo-diamond {
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             animation: sparkle 2s infinite;
             filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+            flex-shrink: 0;
         }
 
         .promo-discount {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 900;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
         }
 
         .promo-timer {
             font-family: 'Inter', monospace;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 700;
             margin-left: auto;
-            margin-right: 16px;
-            padding: 4px 12px;
+            margin-right: 12px;
+            padding: 3px 8px;
             background: rgba(255, 255, 255, 0.25);
-            border-radius: 8px;
+            border-radius: 6px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             z-index: 2;
             position: relative;
+            white-space: nowrap;
         }
 
         .promo-button {
             background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
             color: #1F2937;
             border: none;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 13px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 700;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
             z-index: 2;
             position: relative;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .promo-button:hover {
@@ -644,17 +664,110 @@
 
         /* DESKTOP ADAPTATION */
         @media (min-width: 1024px) {
+            body {
+                display: flex;
+                margin: 0;
+                padding: 0;
+            }
+            
             .promo-banner {
                 padding: 12px 24px;
-                font-size: 16px;
+                font-size: 14px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
             }
             
             .header {
-                padding: 20px 24px;
+                display: none; /* Скрыть мобильный header */
             }
             
             .top-panel {
-                padding: 16px 24px;
+                display: none; /* Скрыть мобильную панель */
+            }
+            
+            /* Desktop Sidebar */
+            .desktop-sidebar {
+                display: block;
+                position: fixed;
+                left: 0;
+                top: 60px; /* После баннера */
+                width: 220px;
+                height: calc(100vh - 60px);
+                background: #0f0f0f;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                overflow-y: auto;
+                z-index: 999;
+            }
+            
+            .sidebar-header {
+                padding: 20px 16px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .sidebar-logo {
+                font-size: 18px;
+                font-weight: 700;
+                color: white;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .sidebar-nav {
+                padding: 16px 0;
+            }
+            
+            .sidebar-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 20px;
+                color: #9ca3af;
+                text-decoration: none;
+                transition: all 0.2s ease;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            
+            .sidebar-item:hover {
+                background: rgba(255, 255, 255, 0.05);
+                color: white;
+            }
+            
+            .sidebar-item.active {
+                background: rgba(139, 92, 246, 0.1);
+                color: #8B5CF6;
+                border-right: 3px solid #8B5CF6;
+            }
+            
+            .sidebar-item.premium {
+                background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+                color: white;
+                margin: 16px 12px;
+                border-radius: 12px;
+                font-weight: 600;
+            }
+            
+            .sidebar-item.premium:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+            }
+            
+            .sidebar-footer {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                right: 0;
+            }
+            
+            .main {
+                margin-left: 220px;
+                margin-top: 60px; /* После баннера */
+                width: calc(100% - 220px);
+                min-height: calc(100vh - 60px);
             }
             
             /* Desktop Grid Layout */
@@ -664,11 +777,91 @@
             
             .desktop-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 24px;
                 padding: 24px;
-                max-width: 1200px;
-                margin: 0 auto;
+                max-width: none;
+                margin: 0;
+            }
+            
+            .bottom-nav {
+                display: none; /* Скрыть мобильную навигацию */
+            }
+            
+            /* Hero Banner for Desktop */
+            .hero-banner {
+                display: block;
+                background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+                padding: 40px;
+                margin: 20px;
+                border-radius: 16px;
+                color: white;
+                text-align: center;
+            }
+            
+            .mobile-welcome {
+                display: none; /* Скрыть на десктопе */
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+                font-weight: 900;
+                margin-bottom: 16px;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+                margin-bottom: 32px;
+                opacity: 0.9;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-button {
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                padding: 16px 32px;
+                border-radius: 50px;
+                font-size: 18px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+                margin-bottom: 24px;
+            }
+            
+            .hero-button:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            }
+            
+            .hero-actions {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .hero-action-btn {
+                background: rgba(0, 0, 0, 0.2);
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 12px 24px;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+            
+            .hero-action-btn:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateY(-1px);
             }
             
             .desktop-character-card {
@@ -851,11 +1044,93 @@
         </div>
     </div>
 
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="desktop-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                🍑 <span>Peach Mini</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-item active" data-page="home">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9.135 20.773v-3.057c0-.78.637-1.414 1.423-1.414h2.875c.377 0 .74.15 1.006.414.267.265.417.624.417 1v3.057c-.002.325.126.637.356.867.23.23.544.36.87.36h1.962a3.46 3.46 0 002.443-1 3.41 3.41 0 001.013-2.422V9.867c0-.735-.328-1.431-.895-1.902l-6.671-5.29a3.097 3.097 0 00-3.949.072L3.467 7.965A2.474 2.474 0 002.5 9.867v8.702C2.5 20.464 4.047 22 5.956 22h1.916c.68 0 1.231-.544 1.236-1.218l.027-.009z"/>
+                </svg>
+                <span data-i18n="sidebar.explore">Исследовать</span>
+            </a>
+            
+            <a href="#" class="sidebar-item" data-page="chat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                </svg>
+                <span data-i18n="sidebar.chat">Чат</span>
+            </a>
+            
+            <a href="#" class="sidebar-item" data-page="collection">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 6h-2V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 4h8v2H8V4zM20 20H4V8h16v12z"/>
+                </svg>
+                <span data-i18n="sidebar.collection">Коллекция</span>
+            </a>
+            
+            <a href="#" class="sidebar-item" data-page="generate">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 18l8.5-8.5L20 2l2 2-7.5 7.5L6 20l-2-2z"/>
+                </svg>
+                <span data-i18n="sidebar.generate">Генерировать изображения</span>
+            </a>
+            
+            <a href="#" class="sidebar-item" data-page="create">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                <span data-i18n="sidebar.create">Создать персонажа</span>
+            </a>
+            
+            <a href="#" class="sidebar-item" data-page="my-ai">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <span data-i18n="sidebar.my_ai">Мой ИИ</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <a href="#" class="sidebar-item premium" onclick="openPremium()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 2l3 7H4l8 11 8-11h-5l3-7H6z"/>
+                </svg>
+                <span data-i18n="sidebar.premium">Стать премиум</span>
+            </a>
+        </div>
+    </aside>
+
     <!-- MAIN CONTENT -->
     <main class="main">
         <!-- HOME PAGE -->
         <div id="page-home" class="page active">
-            <div class="welcome">
+            <!-- Hero Banner - только для десктопа -->
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1 data-i18n="hero.title">Создайте своего ИДЕАЛЬНОГО КОМПАНЬОНА</h1>
+                    <p data-i18n="hero.subtitle">Ваш виртуальный партнер всего в одном клике! Настройте его внешность, личность и воплотите свою мечту и реальность вместе</p>
+                    <button class="hero-button" onclick="navigateTo('create')">
+                        <span data-i18n="hero.create_now">Создайте своего спутника</span>
+                    </button>
+                </div>
+                <div class="hero-actions">
+                    <button class="hero-action-btn" onclick="navigateTo('chat')">
+                        <span data-i18n="hero.chat_with_companion">Общаться с Компаньоном</span>
+                    </button>
+                    <button class="hero-action-btn" onclick="navigateTo('generate')">
+                        <span data-i18n="hero.generate_photo">Острые фото</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Welcome - только для мобильных -->
+            <div class="mobile-welcome">
                 <h1 data-i18n="home.title">Найди свою пару</h1>
                 <p data-i18n="home.subtitle">Начни общаться с AI-компаньонами</p>
             </div>
@@ -1495,7 +1770,19 @@
                 'filters.all': 'Все модели',
                 'filters.realistic': 'Реальный',
                 'filters.anime': 'Аниме',
-                'filters.my': 'Мои'
+                'filters.my': 'Мои',
+                'sidebar.explore': 'Исследовать',
+                'sidebar.chat': 'Чат',
+                'sidebar.collection': 'Коллекция',
+                'sidebar.generate': 'Генерировать изображения',
+                'sidebar.create': 'Создать персонажа',
+                'sidebar.my_ai': 'Мой ИИ',
+                'sidebar.premium': 'Стать премиум',
+                'hero.title': 'Создайте своего ИДЕАЛЬНОГО КОМПАНЬОНА',
+                'hero.subtitle': 'Ваш виртуальный партнер всего в одном клике! Настройте его внешность, личность и воплотите свою мечту и реальность вместе',
+                'hero.create_now': 'Создайте своего спутника',
+                'hero.chat_with_companion': 'Общаться с Компаньоном',
+                'hero.generate_photo': 'Острые фото'
             },
             en: {
                 'promo.first_subscription': 'FIRST SUBSCRIPTION',
@@ -1511,7 +1798,19 @@
                 'filters.all': 'All Models',
                 'filters.realistic': 'Realistic',
                 'filters.anime': 'Anime',
-                'filters.my': 'My'
+                'filters.my': 'My',
+                'sidebar.explore': 'Explore',
+                'sidebar.chat': 'Chat',
+                'sidebar.collection': 'Collection',
+                'sidebar.generate': 'Generate Image',
+                'sidebar.create': 'Create Character',
+                'sidebar.my_ai': 'My AI',
+                'sidebar.premium': 'Become Premium',
+                'hero.title': 'Create your own AI Girlfriend',
+                'hero.subtitle': 'Your virtual partner in just one click! Customize appearance, personality and bring your dream to reality together',
+                'hero.create_now': 'Create Now',
+                'hero.chat_with_companion': 'Chat with Companion',
+                'hero.generate_photo': 'Generate Photo'
             },
             es: {
                 'promo.first_subscription': 'PRIMERA SUSCRIPCIÓN',
@@ -1629,7 +1928,7 @@
         }
 
         // Запускаем инициализацию языка
-        initializeLanguage();
+        setTimeout(initializeLanguage, 100); // Небольшая задержка для загрузки DOM
     </script>
 </body>
 </html>
