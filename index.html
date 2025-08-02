@@ -39,11 +39,16 @@
         /* HEADER - точно как в v0 */
         .header {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 16px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+            padding: 12px 16px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
             flex-shrink: 0;
+            position: sticky;
+            top: 40px; /* После промо-баннера */
+            z-index: 999;
+            gap: 8px;
         }
 
         .logo {
@@ -208,6 +213,110 @@
 
          .desktop-hero {
              display: none; /* Скрыть на мобильных */
+         }
+
+         /* FOOTER STYLES */
+         .footer {
+             background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+             padding: 40px 20px 100px 20px; /* Добавляем отступ снизу для навигации */
+             color: white;
+             text-align: center;
+             border-top: 1px solid rgba(255, 255, 255, 0.1);
+         }
+
+         .footer-hero {
+             margin-bottom: 40px;
+         }
+
+         .footer-hero h2 {
+             font-size: 24px;
+             font-weight: 900;
+             margin-bottom: 20px;
+             background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
+         }
+
+         .footer-create-btn {
+             background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+             color: white;
+             border: none;
+             padding: 16px 32px;
+             border-radius: 50px;
+             font-size: 16px;
+             font-weight: 700;
+             margin-bottom: 16px;
+             display: flex;
+             align-items: center;
+             gap: 8px;
+             margin: 0 auto 16px auto;
+             cursor: pointer;
+             transition: all 0.3s ease;
+         }
+
+         .footer-create-btn svg {
+             width: 20px;
+             height: 20px;
+         }
+
+         .footer-create-btn:hover {
+             transform: translateY(-2px);
+             box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+         }
+
+         .footer-discount-btn {
+             background: rgba(255, 255, 255, 0.1);
+             color: white;
+             border: 1px solid rgba(255, 255, 255, 0.2);
+             padding: 12px 24px;
+             border-radius: 25px;
+             font-size: 14px;
+             font-weight: 600;
+             cursor: pointer;
+             transition: all 0.3s ease;
+         }
+
+         .footer-discount-btn:hover {
+             background: rgba(255, 255, 255, 0.2);
+         }
+
+         .footer-links {
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             gap: 20px;
+             margin-bottom: 30px;
+             text-align: left;
+         }
+
+         .footer-section h3 {
+             font-size: 14px;
+             font-weight: 700;
+             margin-bottom: 12px;
+             color: #8B5CF6;
+         }
+
+         .footer-section a {
+             display: block;
+             color: #9ca3af;
+             text-decoration: none;
+             font-size: 13px;
+             margin-bottom: 8px;
+             transition: color 0.3s ease;
+         }
+
+         .footer-section a:hover {
+             color: white;
+         }
+
+         .footer-copyright {
+             border-top: 1px solid rgba(255, 255, 255, 0.1);
+             padding-top: 20px;
+         }
+
+         .footer-copyright p {
+             font-size: 12px;
+             color: #6b7280;
          }
 
          .gallery-container {
@@ -568,32 +677,60 @@
 
         /* Magic wand animation for CREATE button */
         .magic-wand-create {
-            animation: wandFloatCreate 2.5s ease-in-out infinite;
+            animation: wandFloatCreate 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.create:hover .magic-wand-create,
+        .nav-item.create:active .magic-wand-create {
+            animation: wandExplode 0.6s ease-out, wandFloatCreate 3s ease-in-out infinite 0.6s;
+        }
+
+        .nav-item.create:hover,
+        .nav-item.create:active {
+            transform: scale(1.15);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.8);
         }
 
         .magic-wand-create .sparkles-create circle {
-            animation: sparkleCreate 1.8s ease-in-out infinite;
+            animation: sparkleCreate 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.create:hover .sparkles-create circle,
+        .nav-item.create:active .sparkles-create circle {
+            animation: sparkleExplode 0.6s ease-out, sparkleCreate 2s ease-in-out infinite 0.6s;
         }
 
         .magic-wand-create .sparkles-create circle:nth-child(1) { animation-delay: 0s; }
-        .magic-wand-create .sparkles-create circle:nth-child(2) { animation-delay: 0.2s; }
-        .magic-wand-create .sparkles-create circle:nth-child(3) { animation-delay: 0.4s; }
-        .magic-wand-create .sparkles-create circle:nth-child(4) { animation-delay: 0.6s; }
-        .magic-wand-create .sparkles-create circle:nth-child(5) { animation-delay: 0.8s; }
-        .magic-wand-create .sparkles-create circle:nth-child(6) { animation-delay: 1.0s; }
+        .magic-wand-create .sparkles-create circle:nth-child(2) { animation-delay: 0.15s; }
+        .magic-wand-create .sparkles-create circle:nth-child(3) { animation-delay: 0.3s; }
+        .magic-wand-create .sparkles-create circle:nth-child(4) { animation-delay: 0.45s; }
+        .magic-wand-create .sparkles-create circle:nth-child(5) { animation-delay: 0.6s; }
+        .magic-wand-create .sparkles-create circle:nth-child(6) { animation-delay: 0.75s; }
 
         @keyframes wandFloatCreate {
-            0%, 100% { transform: rotate(-2deg) scale(1); }
-            25% { transform: rotate(1deg) scale(1.08); }
-            50% { transform: rotate(2deg) scale(1.12); }
-            75% { transform: rotate(-1deg) scale(1.05); }
+            0%, 100% { transform: rotate(-1deg) scale(1); }
+            33% { transform: rotate(2deg) scale(1.05); }
+            66% { transform: rotate(-2deg) scale(1.03); }
+        }
+
+        @keyframes wandExplode {
+            0% { transform: rotate(-1deg) scale(1); }
+            30% { transform: rotate(5deg) scale(1.3); }
+            60% { transform: rotate(-8deg) scale(1.4); }
+            100% { transform: rotate(2deg) scale(1.1); }
         }
 
         @keyframes sparkleCreate {
-            0%, 100% { opacity: 0.2; transform: scale(0.6); }
-            25% { opacity: 0.8; transform: scale(1.1); }
-            50% { opacity: 1; transform: scale(1.4); }
-            75% { opacity: 0.6; transform: scale(0.9); }
+            0%, 100% { opacity: 0.3; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes sparkleExplode {
+            0% { opacity: 0.3; transform: scale(0.7); }
+            40% { opacity: 1; transform: scale(2.5); }
+            100% { opacity: 0.8; transform: scale(1.5); }
         }
 
         /* PROMO BANNER - Premium Quality */
@@ -846,6 +983,42 @@
                 display: none; /* Скрыть мобильную навигацию */
             }
             
+            /* Desktop Footer */
+            .footer {
+                padding: 60px 40px 40px 40px;
+                margin-left: -220px; /* Компенсируем отступ sidebar */
+                width: calc(100% + 220px);
+            }
+            
+            .footer-hero {
+                max-width: 600px;
+                margin: 0 auto 50px auto;
+            }
+            
+            .footer-hero h2 {
+                font-size: 32px;
+                margin-bottom: 24px;
+            }
+            
+            .footer-links {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+                max-width: 1000px;
+                margin: 0 auto 40px auto;
+                text-align: left;
+            }
+            
+            .footer-section h3 {
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+            
+            .footer-section a {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            
             /* Hero Banner for Desktop */
             .hero-banner {
                 display: none; /* Убираем отдельный hero баннер */
@@ -858,29 +1031,29 @@
             /* Desktop Hero Section */
             .desktop-hero {
                 display: block;
-                text-align: center;
-                padding: 40px 24px 20px 24px;
+                text-align: left;
+                padding: 20px 40px;
                 color: white;
+                max-width: 800px;
             }
             
             .desktop-hero h1 {
-                font-size: 48px;
+                font-size: 36px;
                 font-weight: 900;
-                margin-bottom: 16px;
+                margin-bottom: 12px;
                 background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
                 text-shadow: none;
+                line-height: 1.2;
             }
             
             .desktop-hero p {
-                font-size: 18px;
+                font-size: 16px;
                 color: #9ca3af;
-                margin-bottom: 32px;
-                max-width: 600px;
-                margin-left: auto;
-                margin-right: auto;
+                margin-bottom: 20px;
+                line-height: 1.4;
             }
             
             .hero-content h1 {
@@ -1138,7 +1311,8 @@
             </button>
             <button class="panel-icon premium" onclick="openPremium()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 2l3 7H4l8 11 8-11h-5l3-7H6z"/>
+                    <path d="M6 2h12l-2 6h3l-7 12-7-12h3l-2-6z"/>
+                    <path d="M8 6l2-2h4l2 2-1 3h-6l-1-3z" opacity="0.7"/>
                 </svg>
             </button>
         </div>
@@ -1290,6 +1464,42 @@
             </div>
         </div>
     </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-hero">
+            <h2 data-i18n="footer.title">Создайте своего идеального Компаньона</h2>
+            <button class="footer-create-btn" onclick="navigateTo('create')">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 18l8.5-8.5L20 2l2 2-7.5 7.5L6 20l-2-2z"/>
+                </svg>
+                <span data-i18n="footer.create_companion">Создайте своего спутника</span>
+            </button>
+            <button class="footer-discount-btn" onclick="openPremium()">
+                <span data-i18n="footer.subscription_discount">Подписка со скидкой 75%</span>
+            </button>
+        </div>
+        
+        <div class="footer-links">
+            <div class="footer-section">
+                <h3 data-i18n="footer.company">Компания</h3>
+                <a href="#" data-i18n="footer.partnership">Партнерская программа</a>
+                <a href="#" data-i18n="footer.legal">Правовые вопросы</a>
+                <a href="#" data-i18n="footer.terms">Условия использования</a>
+            </div>
+            <div class="footer-section">
+                <h3 data-i18n="footer.policies">Политики</h3>
+                <a href="#" data-i18n="footer.minors_policy">Политика для несовершеннолетних</a>
+                <a href="#" data-i18n="footer.content_removal">Политика удаления контента</a>
+                <a href="#" data-i18n="footer.content_blocking">Политика блокировки контента</a>
+                <a href="#" data-i18n="footer.privacy">Политика конфиденциальности</a>
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <p data-i18n="footer.copyright">© 2024-2025 PeachMini All Rights Reserved</p>
+        </div>
+    </footer>
 
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
@@ -1877,7 +2087,20 @@
                 'hero.subtitle': 'Ваш виртуальный партнер всего в одном клике! Настройте его внешность, личность и воплотите свою мечту и реальность вместе',
                 'hero.create_now': 'Создайте своего спутника',
                 'hero.chat_with_companion': 'Общаться с Компаньоном',
-                'hero.generate_photo': 'Острые фото'
+                'hero.generate_photo': 'Острые фото',
+                'footer.title': 'Создайте своего идеального Компаньона',
+                'footer.create_companion': 'Создайте своего спутника',
+                'footer.subscription_discount': 'Подписка со скидкой 75%',
+                'footer.company': 'Компания',
+                'footer.partnership': 'Партнерская программа',
+                'footer.legal': 'Правовые вопросы',
+                'footer.terms': 'Условия использования',
+                'footer.policies': 'Политики',
+                'footer.minors_policy': 'Политика для несовершеннолетних',
+                'footer.content_removal': 'Политика удаления контента',
+                'footer.content_blocking': 'Политика блокировки контента',
+                'footer.privacy': 'Политика конфиденциальности',
+                'footer.copyright': '© 2024-2025 PeachMini All Rights Reserved'
             },
             en: {
                 'promo.first_subscription': 'FIRST SUBSCRIPTION',
@@ -1905,7 +2128,20 @@
                 'hero.subtitle': 'Your virtual partner in just one click! Customize appearance, personality and bring your dream to reality together',
                 'hero.create_now': 'Create Now',
                 'hero.chat_with_companion': 'Chat with Companion',
-                'hero.generate_photo': 'Generate Photo'
+                'hero.generate_photo': 'Generate Photo',
+                'footer.title': 'Create your ideal Companion',
+                'footer.create_companion': 'Create your companion',
+                'footer.subscription_discount': '75% Discount Subscription',
+                'footer.company': 'Company',
+                'footer.partnership': 'Partnership Program',
+                'footer.legal': 'Legal Issues',
+                'footer.terms': 'Terms of Use',
+                'footer.policies': 'Policies',
+                'footer.minors_policy': 'Minors Policy',
+                'footer.content_removal': 'Content Removal Policy',
+                'footer.content_blocking': 'Content Blocking Policy',
+                'footer.privacy': 'Privacy Policy',
+                'footer.copyright': '© 2024-2025 PeachMini All Rights Reserved'
             },
             es: {
                 'promo.first_subscription': 'PRIMERA SUSCRIPCIÓN',
