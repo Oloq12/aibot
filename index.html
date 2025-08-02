@@ -626,6 +626,7 @@
             flex-shrink: 0;
             height: 95px;
             box-sizing: border-box;
+            z-index: 1000;
         }
 
         .nav-item {
@@ -745,11 +746,15 @@
             justify-content: space-between;
             cursor: pointer;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
             min-height: 40px;
             flex-wrap: nowrap;
+            z-index: 1000;
         }
 
         .promo-banner::before {
@@ -857,12 +862,47 @@
             100% { transform: translateX(100%); }
         }
 
+        /* TABLET ADAPTATION */
+        @media screen and (min-width: 768px) and (max-width: 1199px) {
+            .promo-banner {
+                padding: 10px 20px;
+                font-size: 12px;
+                min-height: 45px;
+            }
+
+            .header {
+                top: 45px;
+                padding: 16px 24px;
+            }
+
+            .gallery {
+                height: 350px;
+            }
+
+            .character-card {
+                width: 180px;
+                height: 270px;
+            }
+
+            .gallery-container {
+                height: 270px;
+            }
+
+            .main {
+                padding: 0 20px;
+            }
+
+            .footer {
+                padding: 50px 30px 120px 30px;
+            }
+        }
+
         /* DESKTOP ADAPTATION */
-        @media (min-width: 1024px) {
+        @media screen and (min-width: 1200px) {
             body {
-                display: flex;
                 margin: 0;
                 padding: 0;
+                overflow-x: hidden;
             }
             
             .promo-banner {
@@ -873,6 +913,9 @@
                 left: 0;
                 right: 0;
                 z-index: 1000;
+                height: 50px;
+                display: flex;
+                align-items: center;
             }
             
             .header {
@@ -888,9 +931,9 @@
                 display: block;
                 position: fixed;
                 left: 0;
-                top: 60px; /* После баннера */
+                top: 50px; /* После баннера */
                 width: 220px;
-                height: calc(100vh - 60px);
+                height: calc(100vh - 50px);
                 background: #0f0f0f;
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
                 overflow-y: auto;
@@ -960,9 +1003,11 @@
             
             .main {
                 margin-left: 220px;
-                margin-top: 60px; /* После баннера */
+                margin-top: 50px; /* После баннера */
                 width: calc(100% - 220px);
-                min-height: calc(100vh - 60px);
+                min-height: calc(100vh - 50px);
+                padding: 0;
+                box-sizing: border-box;
             }
             
             /* Desktop Grid Layout */
@@ -986,8 +1031,9 @@
             /* Desktop Footer */
             .footer {
                 padding: 60px 40px 40px 40px;
-                margin-left: -220px; /* Компенсируем отступ sidebar */
-                width: calc(100% + 220px);
+                margin-left: 0;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .footer-hero {
@@ -1194,7 +1240,7 @@
             }
         }
 
-        @media (min-width: 1400px) {
+        @media screen and (min-width: 1600px) {
             .desktop-grid {
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                 gap: 32px;
@@ -1225,6 +1271,8 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto;
+            z-index: 10;
+            overflow: visible;
         }
         
         .nav-item.create .nav-icon {
